@@ -1,0 +1,13 @@
+[project]
+name = "aspifec"
+version = "0.1.0"
+description = "ASPIFEC"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.136.3",
+    "jinja2>=3.1.6",
+    "uvicorn>=0.48.0",
+    "fec_parser==1.0.0",
+    "python-multipart==0.0.30",
+]

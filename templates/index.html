@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AspiFEC</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-300">
+
+    <div class="p-4 rounded-xl max-w-4xl w-full bg-white shadow-sm hover:shadow-base flex flex-col items-center">
+        <div class="flex items-center gap-4 mt-4">
+            <img src="/etcld-logo.svg" width="145" height="48"
+                alt="logo ectld - Expérimentation Territoriale contre le chômage de longue durée">
+            <div class="flex h-full items-center border-l-2 border-gray-300 pl-4 text-lg">
+                AspiFEC
+            </div>
+        </div>
+        <div class="p-4 rounded-xl">
+            <h2 class="text-xl font-bold mb-4 text-violet-600">Téléversez votre fichier d'écritures comptables (FEC)
+            </h2>
+            <form id="uploadForm" class="flex items-center gap-4">
+                <input type="file" id="fileInput" required
+                    class="text-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:text-sm file:font-semibold file:bg-violet-700 file:text-white hover:file:bg-violet-900" />
+                <button type="submit"
+                    class="bg-violet-600 hover:bg-violet-800 text-white font-semibold py-2 px-6 rounded-md">
+                    Analyser le fichier
+                </button>
+            </form>
+        </div>
+
+        <div id="error-div" class="p-4 rounded-xl border-1 border-red-500 bg-red-300 text-red-600 font-semibold hidden">
+            Une erreur est survenue lors de l'analyse de votre fichier, vérifiez sa conformité.
+        </div>
+    </div>
+
+    <div id="resultContainer"
+        class="mt-4 p-4 rounded-xl max-w-4xl w-full bg-white shadow-sm hover:shadow-base hidden items-center flex flex-col">
+        <h2 class="font-semibold mb-2 text-violet-600 text-center w-full bg-gray-100 rounded-lg text-xl py-2">
+            Indicateurs financiers</h2>
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 w-full">
+            <div class="w-full">
+                <fieldset class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md w-full">
+                    <legend
+                        class="rounded-lg border border-gray-100 bg-gray-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-violet-500">
+                        Excédent brut d'exploitation (EBE)
+                    </legend>
+
+                    <div class="flex justify-between">
+                        <label class="text-sm font-medium text-gray-500">Montant</label>
+                        <div class="text-right">
+                            <span id="ebe-response" class="text-xl font-bold text-gray-900"></span>
+                            <span class="ml-1 text-base font-semibold text-gray-500">€</span>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="mt-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md w-full">
+                    <legend
+                        class="rounded-lg border border-gray-100 bg-gray-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-violet-500">
+                        Capacité d'autofinancement (CAF)
+                    </legend>
+
+                    <div class="flex justify-between">
+                        <label class="text-sm font-medium text-gray-500">Montant</label>
+                        <div class="text-right">
+                            <span id="caf-response" class="text-xl font-bold text-gray-900"></span>
+                            <span class="ml-1 text-base font-semibold text-gray-500">€</span>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="w-full">
+                <fieldset class="rounded-xl border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md w-full">
+                    <legend
+                        class="rounded-lg border border-gray-100 bg-gray-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-violet-500">
+                        Fonds de roulement (FR)
+                    </legend>
+
+                    <div class="flex justify-between">
+                        <label class="text-sm font-medium text-gray-500">Montant</label>
+                        <div class="text-right">
+                            <span id="fr-response" class="text-xl font-bold text-gray-900"></span>
+                            <span class="ml-1 text-base font-semibold text-gray-500">€</span>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="mt-4 rounded-xl border border-gray-200 bg-white p-4 shadow-sm hover:shadow-md w-full">
+                    <legend
+                        class="rounded-lg border border-gray-100 bg-gray-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-violet-500">
+                        Besoin en fonds de roulement (BFR)
+                    </legend>
+
+                    <div class="flex justify-between">
+                        <label class="text-sm font-medium text-gray-500">Montant</label>
+                        <div class="text-right">
+                            <span id="bfr-response" class="text-xl font-bold text-gray-900"></span>
+                            <span class="ml-1 text-base font-semibold text-gray-500">€</span>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <div id="tableContainer"
+        class="mt-4 p-4 rounded-xl max-w-4xl w-full bg-white shadow-sm hover:shadow-base hidden items-center flex flex-col">
+        <h2 class="font-semibold mb-2 text-violet-600 text-center w-full bg-gray-100 rounded-lg text-xl py-2">Compte de
+            résultat</h2>
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="uppercase text-sm border-1 border-slate-200">
+                    <th class="p-4">Catégorie</th>
+                    <th class="p-4">Sous-catégorie</th>
+                    <th class="p-4">Montant</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody" class="divide-y text-sm">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4 p-8 rounded-xl w-full max-w-4xl bg-white shadow-sm hover:shadow-base">
+        <b>Aucune donnée n'est stockée sur nos serveurs.</b> <br><br>
+
+        Cet outil a été développé par le fonds ETCLD (Expérimentation Territoriale contre le Chômage de Longue Durée)
+        à partir d'un outil utilisé par la plateforme du Fonds, et développé en collaboration avec la coopérative
+        Spirkop. <br>
+        Le code source pour le calcul des indicateurs financiers et du compte de résultat est disponible
+        ci-dessous.<br><br>
+
+        <b>Liens utiles :</b>
+        <ul class="list-disc ml-6">
+            <li><a class="text-blue-600 visited:text-purple-600" href="https://etcld.fr">ETCLD</a></li>
+            <li><a class="text-blue-600 visited:text-purple-600" href="https://bilan.etcld.fr">Bilan ETCLD</a></li>
+            <li><a class="text-blue-600 visited:text-purple-600" href="https://www.spirkop.com/fr/">Spirkop</a></li>
+            <li><a class="text-blue-600 visited:text-purple-600"
+                    href="https://test.pypi.org/project/fec-parser/">Package Python</a></li>
+
+        </ul>
+    </div>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        const fileInput = document.getElementById('fileInput');
+        const resultContainer = document.getElementById('resultContainer');
+
+        const ebeResponse = document.getElementById('ebe-response');
+        const cafResponse = document.getElementById('caf-response');
+        const frResponse = document.getElementById('fr-response');
+        const bfrResponse = document.getElementById('bfr-response');
+        const tableBody = document.getElementById('tableBody');
+        const tableContainer = document.getElementById('tableContainer');
+        const errorDiv = document.getElementById('error-div');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            tableContainer.classList.add('hidden');
+            resultContainer.classList.add('hidden');
+            errorDiv.classList.add('hidden');
+
+            try {
+                const response = await fetch('/upload/', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.status == 400) {
+                    errorDiv.classList.remove('hidden');
+                    return
+                }
+
+                const data = await response.json();
+                const nbrFormat = new Intl.NumberFormat('fr-FR');
+
+                ebeResponse.textContent = nbrFormat.format(data["indicateurs"]["EBE"]).replace("-", "- ");
+                cafResponse.textContent = nbrFormat.format(data["indicateurs"]["CAF"]).replace("-", "- ");
+                frResponse.textContent = nbrFormat.format(data["indicateurs"]["FR"]).replace("-", "- ");
+                bfrResponse.textContent = nbrFormat.format(data["indicateurs"]["BFR"]).replace("-", "- ");
+                resultContainer.classList.remove('hidden');
+
+                tableBody.innerHTML = "";
+
+                let level1values = data["compte_resultat"].filter(
+                    (item) => item.parent == ""
+                ).map(item => item.internal_label)
+
+                data["compte_resultat"].forEach(item => {
+                    const row = document.createElement('tr');
+
+                    if (item.parent != "" && !level1values.includes(item.parent)) return;
+                    isLevel1 = item.parent === "" || item.parent == "RESULTAT_NET";
+
+                    row.classList = [(isLevel1 ? "bg-slate-50" : "bg-slate-100") + " border-1 border-slate-200"];
+
+                    row.innerHTML = `
+                        <td class="p-4 font-bold text-violet-800">${isLevel1 ? item.label : ''}</td>
+                        <td class="p-4 text-violet-800">${isLevel1 ? '' : item.label}</td>
+                        <td class="p-4 font-bold text-right tracking-tight whitespace-nowrap">${nbrFormat.format(item.montant).replace("-", "- ")}</td>
+                    `;
+
+                    tableBody.appendChild(row);
+                });
+
+                tableContainer.classList.remove('hidden');
+
+            } catch (error) {
+                console.log(error);
+            }
+        });
+    </script>
+</body>
+
+</html>
