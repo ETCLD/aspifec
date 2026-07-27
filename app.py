@@ -16,6 +16,10 @@ templates = Jinja2Templates(directory="templates")
 async def favicon():
     return FileResponse("favicon.ico")
 
+@app.get('/fec_exemple.txt', include_in_schema=False)
+async def fec_exemple():
+    return FileResponse("fec_exemple.txt")
+
 @app.get('/etcld-logo.svg', include_in_schema=False)
 async def favicon():
     return FileResponse("etcld-logo.svg")

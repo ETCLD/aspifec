@@ -119,9 +119,21 @@
             <tbody id="tableBody" class="divide-y text-sm">
             </tbody>
         </table>
+        <br><br><br>
+        <button id="downloadCRButton"
+            class="bg-violet-600 hover:bg-violet-800 text-white font-semibold py-2 px-6 rounded-md">
+            Exporter en CSV
+        </button>
     </div>
 
     <div class="mt-4 p-8 rounded-xl w-full max-w-4xl bg-white shadow-sm hover:shadow-base">
+        <b>Vous voulez tester l'outil mais n'avez pas de fichier d'écritures comptables sous la main ?</b> <br><br>
+        <button id="downloadExampleButton"
+            class="bg-violet-600 hover:bg-violet-800 text-white font-semibold py-2 px-6 rounded-md">
+            Télécharger un fichier FEC exemple
+        </button>
+        <br><br>
+
         <b>Aucune donnée n'est stockée sur nos serveurs.</b> <br><br>
 
         Cet outil a été développé par le fonds ETCLD (Expérimentation Territoriale contre le Chômage de Longue Durée)
@@ -142,6 +154,7 @@
     </div>
 
     <script>
+        let compteResultat = null;
         const form = document.getElementById('uploadForm');
         const fileInput = document.getElementById('fileInput');
         const resultContainer = document.getElementById('resultContainer');
@@ -153,12 +166,15 @@
         const tableBody = document.getElementById('tableBody');
         const tableContainer = document.getElementById('tableContainer');
         const errorDiv = document.getElementById('error-div');
+        const downloadExampleButton = document.getElementById("downloadExampleButton")
+        const downloadCRButton = document.getElementById("downloadCRButton")
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const formData = new FormData();
             formData.append('file', fileInput.files[0]);
+            compteResultat = null;
 
             tableContainer.classList.add('hidden');
             resultContainer.classList.add('hidden');
@@ -176,6 +192,7 @@
                 }
 
                 const data = await response.json();
+                compteResultat = data["compte_resultat"];
                 const nbrFormat = new Intl.NumberFormat('fr-FR');
 
                 ebeResponse.textContent = nbrFormat.format(data["indicateurs"]["EBE"]).replace("-", "- ");
@@ -212,6 +229,67 @@
             } catch (error) {
                 console.log(error);
             }
+        });
+
+        downloadExampleButton.addEventListener('click', async (e) => {
+            try {
+                const response = await fetch("/fec_exemple.txt");
+                const blob = await response.blob();
+                const downloadUrl = window.URL.createObjectURL(blob);
+
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = "FEC_Exemple.txt"; 
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(downloadUrl);
+            } catch (error) {
+                console.error(error);
+            }
+        });
+
+        downloadCRButton.addEventListener('click', async (e) => {
+            const itemsMap = new Map();
+            compteResultat.forEach(item => itemsMap.set(item.internal_label, item));
+
+            function getNiveau(item) {
+                let depth = 0;
+                let curr = item;
+                while (curr && curr.parent && itemsMap.has(curr.parent) && curr.parent != "RESULTAT_NET") {
+                depth++;
+                    curr = itemsMap.get(curr.parent);
+                }
+                return depth;
+            }
+
+            const csvRows = [
+                "Code interne;Libellé;;;Montant"
+            ];
+
+            compteResultat.forEach(item => {
+                const level = getNiveau(item);
+                const cleanCode = item.internal_label.replace(/"/g, '""');
+                const cleanLabel = '"' + item.label.replace(/"/g, '""') + '"';
+
+                const prefix = level == 2 ? ";└─;" : level == 1 ? "└─;" : "";
+
+                csvRows.push(`"${cleanCode}";${prefix}${cleanLabel}${';'.repeat(2 - level)};${item.montant}`);
+            });
+
+            const csvContent = csvRows.join("\n");
+
+            const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+
+            const downloadUrl = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = downloadUrl;
+            a.download = "compte_de_resultat_aspifec.csv";
+            document.body.appendChild(a);
+            a.click();
+
+            a.remove();
+            URL.revokeObjectURL(downloadUrl);
         });
     </script>
 </body>

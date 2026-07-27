@@ -1,0 +1,54 @@
+JournalCode	JournalLib	EcritureNum	EcritureDate	CompteNum	CompteLib	CompAuxNum	CompAuxLib	PieceRef	PieceDate	EcritureLib	Debit	Credit	EcritureLet	DateLet	ValidDate	Montantdevise	Idevise
+OD	Journal des opérations diverses	1	20250101	732	DOTATION D'AMORCAGE			DJDEUDNOA5	20250101	DA	0,0	10000,00				-10000,0	EUR
+OD	Journal des opérations diverses	2	20250101	73101	CDE ETAT Janvier			DJDEUDNO01	20250101	CDE ETAT	0,0	1000,00				1000,0	EUR
+OD	Journal des opérations diverses	3	20250201	73101	CDE ETAT Février			DJDEUDNO02	20250201	CDE ETAT	0,0	1000,00				1000,0	EUR
+OD	Journal des opérations diverses	4	20250301	73101	CDE ETAT Mars			DJDEUDNO03	20250301	CDE ETAT	0,0	1000,00				1000,0	EUR
+OD	Journal des opérations diverses	5	20250401	73101	CDE ETAT Avril			DJDEUDNO04	20250401	CDE ETAT	0,0	1000,00				1000,0	EUR
+OD	Journal des opérations diverses	6	20250501	73101	CDE ETAT Mai			DJDEUDNO05	20250501	CDE ETAT	0,0	1000,00				1000,0	EUR
+OD	Journal des opérations diverses	7	20250601	73101	CDE ETAT Juin			DJDEUDNO06	20250601	CDE ETAT	0,0	1000,00				1000,0	EUR
+OD	Journal des opérations diverses	8	20250701	73101	CDE ETAT Juillet			DJDEUDNO07	20250701	CDE ETAT	0,0	1000,00				1000,0	EUR
+OD	Journal des opérations diverses	9	20250801	73101	CDE ETAT Août			DJDEUDNO08	20250801	CDE ETAT	0,0	1000,00				1000,0	EUR
+OD	Journal des opérations diverses	10	20250901	73101	CDE ETAT Septembre			DJDEUDNO09	20250901	CDE ETAT	0,0	1000,00				1000,0	EUR
+OD	Journal des opérations diverses	11	20251001	73101	CDE ETAT Octobre			DJDEUDNO10	20251001	CDE ETAT	0,0	1000,00				1000,0	EUR
+OD	Journal des opérations diverses	12	20251101	73101	CDE ETAT Novembre			DJDEUDNO11	20251101	CDE ETAT	0,0	1000,00				1000,0	EUR
+OD	Journal des opérations diverses	13	20251201	73101	CDE ETAT Décembre			DJDEUDNO12	20251201	CDE ETAT	0,0	1000,00				1000,0	EUR
+OD	Journal des opérations diverses	14	20250101	73102	CDE Département Janvier			DJDEUDND01	20250101	CDE DEP	0,0	150,00				150,0	EUR
+OD	Journal des opérations diverses	15	20250201	73102	CDE Département Février			DJDEUDND02	20250201	CDE DEP	0,0	150,00				150,0	EUR
+OD	Journal des opérations diverses	16	20250301	73102	CDE Département Mars			DJDEUDND03	20250301	CDE DEP	0,0	150,00				150,0	EUR
+OD	Journal des opérations diverses	17	20250401	73102	CDE Département Avril			DJDEUDND04	20250401	CDE DEP	0,0	150,00				150,0	EUR
+OD	Journal des opérations diverses	18	20250501	73102	CDE Département Mai			DJDEUDND05	20250501	CDE DEP	0,0	150,00				150,0	EUR
+OD	Journal des opérations diverses	19	20250601	73102	CDE Département Juin			DJDEUDND06	20250601	CDE DEP	0,0	150,00				150,0	EUR
+OD	Journal des opérations diverses	20	20250701	73102	CDE Département Juillet			DJDEUDND07	20250701	CDE DEP	0,0	150,00				150,0	EUR
+OD	Journal des opérations diverses	21	20250801	73102	CDE Département Août			DJDEUDND08	20250801	CDE DEP	0,0	150,00				150,0	EUR
+OD	Journal des opérations diverses	22	20250901	73102	CDE Département Septembre			DJDEUDND09	20250901	CDE DEP	0,0	150,00				150,0	EUR
+OD	Journal des opérations diverses	23	20251001	73102	CDE Département Octobre			DJDEUDND10	20251001	CDE DEP	0,0	150,00				150,0	EUR
+OD	Journal des opérations diverses	24	20251101	73102	CDE Département Novembre			DJDEUDND11	20251101	CDE DEP	0,0	150,00				150,0	EUR
+OD	Journal des opérations diverses	25	20251201	73102	CDE Département Décembre			DJDEUDND12	20251201	CDE DEP	0,0	150,00				150,0	EUR
+OD	Journal des opérations diverses	26	20250101	701	Ventes de produits fabriqués, prestations de services, marchandises				20251201	CA#1	0,0	100000,00				100000,0	EUR
+OD	Journal des opérations diverses	27	20250101	71	Production stockée (ou destockage)			DJDEUDND27	20251201	CA#2	0,0	100000,00				100000,0	EUR
+OD	Journal des opérations diverses	28	20250101	72	Production immobilisée			DJDEUDND28	20251201	CA#3	0,0	20000,00				20000,0	EUR
+OD	Journal des opérations diverses	29	20250101	745	Subvention d'activité				20251201	SUB#1	0,0	50000,00				50000,0	EUR
+OD	Journal des opérations diverses	30	20250101	601	Achat consommé #1				20251201	AC#1	50000,00	0,0				50000,0	EUR
+OD	Journal des opérations diverses	31	20250101	602	Achat consommé #2				20251201	AC#2	20000,00	0,0				20000,0	EUR
+OD	Journal des opérations diverses	32	20250101	603	Achat consommé #3				20251201	AC#3	30000,00	0,0				30000,0	EUR
+OD	Journal des opérations diverses	33	20250101	607	Achat consommé #4				20251201	AC#4	40000,00	0,0				40000,0	EUR
+OD	Journal des opérations diverses	34	20250101	608	Achat consommé #5				20251201	AC#5	10000,00	0,0				10000,0	EUR
+OD	Journal des opérations diverses	35	20250101	609	Achat consommé #6				20251201	AC#6	50000,00	0,0				50000,0	EUR
+OD	Journal des opérations diverses	36	20250101	7416	Sub nationale				20251201	SUB#2	0,0	50000,00				50000,0	EUR
+OD	Journal des opérations diverses	37	20250101	74161	Sub Agefiph				20251201	SUB#3	0,0	10000,00				10000,0	EUR
+OD	Journal des opérations diverses	38	20250101	74172	Sub Etat				20251201	SUB#4	0,0	5000,00				5000,0	EUR
+OD	Journal des opérations diverses	39	20250101	74176	Sub Commune				20251201	SUB#5	0,0	5000,00				5000,0	EUR
+OD	Journal des opérations diverses	40	20250101	7423	CTE				20251201	CTE	0,0	23000,00				23000,0	EUR
+OD	Journal des opérations diverses	41	20250101	747	Quote part				20251201	QUOTEPART	0,0	15000,00				15000,0	EUR
+OD	Journal des opérations diverses	42	20250101	64101	Masse salariale				20251201	MSPPDE	150000,00	0,0				150000,0	EUR
+OD	Journal des opérations diverses	43	20250101	64102	Masse salariale				20251201	MSNPPDE	50000,00	0,0				50000,0	EUR
+OD	Journal des opérations diverses	44	20250101	604	Autres achats				20251201	AUTRES#1	10000,00	0,0				10000,0	EUR
+OD	Journal des opérations diverses	45	20250101	65	Autres charges				20251201	AUTRES#2	1000,00	0,0				1000,0	EUR
+OD	Journal des opérations diverses	46	20250101	63	Impôts et taxes				20251201	AUTRES#3	100,00	0,0				100,0	EUR
+OD	Journal des opérations diverses	47	20250101	6811	Dotation aux amortissements				20251201	AUTRES#4	10,00	0,0				10,0	EUR
+OD	Journal des opérations diverses	48	20250101	76	Résultat financier - produits				20251201	RESULTAT#1	0,0	10000,00				10000,0	EUR
+OD	Journal des opérations diverses	49	20250101	66	Résultat financier - charges				20251201	RESULTAT#2	5000,00	0,0				5000,0	EUR
+OD	Journal des opérations diverses	50	20250101	77	Résultat exceptionnel - produits				20251201	RESULTAT#3	0,0	1000,00				1000,0	EUR
+OD	Journal des opérations diverses	51	20250101	67	Résultat exceptionnel - charges				20251201	RESULTAT#4	500,00	0,0				500,0	EUR
+OD	Journal des opérations diverses	52	20250101	69	Participation des salariés				20251201	RESULTAT#5	2000,00	0,0				2000,0	EUR
+OD	Journal des opérations diverses	53	20250101	444	Pour equilibrage FEC				20251201	EQUILIBRAGE	0,0	5810,00				5810,0	EUR
